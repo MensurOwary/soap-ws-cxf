@@ -2,10 +2,11 @@
 
 To create the SOAP WS using CXF and Spring, follow the subsequent steps:
 
-0. The structure of the application:
+## 0. The structure of the application:
+
 ![Structure](./images/structure.png)
 
-1. Create the Web Service interface
+## 1. Create the Web Service interface
 ```java
 @WebService
 public interface CountryService {
@@ -16,7 +17,7 @@ public interface CountryService {
 }
 ```
 
-2. Implement the method in the interface
+## 2. Implement the method in the interface
 ```java
 @WebService(serviceName = "CountryService",
             endpointInterface = "com.owary.endpoints.CountryService")
@@ -29,7 +30,7 @@ public class CountryServiceImpl implements CountryService {
 }
 ```
 
-3. Add the Deployment Descriptor - web.xml
+## 3. Add the Deployment Descriptor - web.xml
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
@@ -62,7 +63,7 @@ public class CountryServiceImpl implements CountryService {
 </web-app>
 ```
 
-4. Add the CXF Config file
+## 4. Add the CXF Config file
 ```xml
 <?xml version="1.0" encoding="UTF-8" ?>
 <beans xmlns="http://www.springframework.org/schema/beans"
