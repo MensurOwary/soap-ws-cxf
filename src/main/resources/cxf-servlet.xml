@@ -6,9 +6,28 @@
        xmlns:soap="http://cxf.apache.org/bindings/soap"
        xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
 
+    <bean id="myPasswordCallback" class="com.owary.handler.PasswordCallbackHandler"/>
+
     <jaxws:endpoint id="countryService"
                     address="/cs"
-                    implementor="com.owary.endpoints.implementations.CountryServiceImpl"/>
+                    implementor="com.owary.endpoints.implementations.CountryServiceImpl">
+
+        <jaxws:inInterceptors>
+
+            <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
+                <constructor-arg>
+                    <map>
+                        <entry key="action" value="UsernameToken"/>
+                        <entry key="passwordType" value="PasswordText"/>
+                        <entry key="passwordCallbackRef">
+                            <ref bean="myPasswordCallback"/>
+                        </entry>
+                    </map>
+                </constructor-arg>
+            </bean>
+        </jaxws:inInterceptors>
+
+    </jaxws:endpoint>
 
 
 </beans>
