@@ -1,4 +1,4 @@
-# WS-Security
+# WS-Security : PasswordText Authentication
 
 *Note: This example builds upon the simple SOAP WS that is built [here](./README-PrimitiveSOAPWebService.md)*
 
@@ -78,7 +78,7 @@ This is the complete xml file (`<beans>` tag has been removed for brevity)
         <Password>pwd</Password>
     </UsernameToken>
     ```
- - Password type:
+ - Password type (taken from [here](https://www.oasis-open.org/committees/download.php/13392/wss-v1.1-spec-pr-UsernameTokenProfile-01.htm)):
  
      URI | Description
      --- | ---
