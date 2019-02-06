@@ -19,7 +19,7 @@
                 <constructor-arg>
                     <map>
                         <entry key="action" value="UsernameToken"/>
-                        <entry key="passwordType" value="PasswordText"/>
+                        <entry key="passwordType" value="PasswordDigest"/>
                         <entry key="passwordCallbackRef">
                             <ref bean="myPasswordCallback"/>
                         </entry>

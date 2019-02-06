@@ -3,9 +3,12 @@ package com.owary.repository;
 import com.owary.model.Country;
 import com.owary.utils.DBHelper;
 import com.owary.utils.ExceptionThrowingConsumer;
+import com.owary.utils.PasswordDigestHelper;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -130,7 +133,6 @@ public class CountryRepositoryImpl implements CountryRepository{
 
     @PostConstruct
     public void preprocess() {
-
         try(Connection connection = DBHelper.getConnection();
             Statement st = connection.createStatement()) {
             // if table exists
