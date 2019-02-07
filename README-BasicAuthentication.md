@@ -49,7 +49,8 @@ public class Config extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/ws/*").hasAnyRole()
+                .antMatchers("/ws/cs?wsdl", "/ws/").permitAll()
+                .antMatchers("/*").hasAnyRole()
                 .and()
                 .httpBasic()
                 .and()
