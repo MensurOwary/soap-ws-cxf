@@ -21,7 +21,7 @@ public class PasswordCallbackHandler implements CallbackHandler {
             String identity = wspc.getIdentifier();
             User user = repository.getUserByUsername(identity);
             if (user != null && user.getUsername().equals(identity)) {
-                wspc.setPassword("admin");
+                wspc.setPassword(user.getPassword());
                 return;
             }
         }

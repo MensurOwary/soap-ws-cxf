@@ -7,32 +7,32 @@
        xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="myPasswordCallback" class="com.owary.handler.PasswordCallbackHandler"/>
-    <bean id="usernameTokenDBValidator" class="com.owary.handler.UsernameTokenDBValidator"/>
+    <!--<bean id="myPasswordCallback" class="com.owary.handler.PasswordCallbackHandler"/>-->
+    <!--<bean id="usernameTokenDBValidator" class="com.owary.handler.UsernameTokenDBValidator"/>-->
 
     <jaxws:endpoint id="countryService"
                     address="/cs"
                     implementor="com.owary.endpoints.implementations.CountryServiceImpl">
 
-        <jaxws:inInterceptors>
-            <bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">
-                <constructor-arg>
-                    <map>
-                        <entry key="action" value="UsernameToken"/>
-                        <entry key="passwordType" value="PasswordDigest"/>
-                        <entry key="passwordCallbackRef">
-                            <ref bean="myPasswordCallback"/>
-                        </entry>
-                    </map>
-                </constructor-arg>
-            </bean>
-        </jaxws:inInterceptors>
+        <!--<jaxws:inInterceptors>-->
+            <!--<bean class="org.apache.cxf.ws.security.wss4j.WSS4JInInterceptor">-->
+                <!--<constructor-arg>-->
+                    <!--<map>-->
+                        <!--<entry key="action" value="UsernameToken"/>-->
+                        <!--<entry key="passwordType" value="PasswordText"/>-->
+                        <!--<entry key="passwordCallbackRef">-->
+                            <!--<ref bean="myPasswordCallback"/>-->
+                        <!--</entry>-->
+                    <!--</map>-->
+                <!--</constructor-arg>-->
+            <!--</bean>-->
+        <!--</jaxws:inInterceptors>-->
 
-        <jaxws:properties>
-            <entry key="ws-security.enable.nonce.cache" value="false" />
-            <entry key="ws-security.enable.timestamp.cache" value="false" />
-            <entry key="ws-security.ut.validator" value-ref="usernameTokenDBValidator"/>
-        </jaxws:properties>
+        <!--<jaxws:properties>-->
+            <!--<entry key="ws-security.enable.nonce.cache" value="false" />-->
+            <!--<entry key="ws-security.enable.timestamp.cache" value="false" />-->
+            <!--<entry key="ws-security.ut.validator" value-ref="usernameTokenDBValidator"/>-->
+        <!--</jaxws:properties>-->
     </jaxws:endpoint>
 
 
@@ -42,5 +42,7 @@
     <bean id="countryRepository" class="com.owary.repository.CountryRepositoryImpl"/>
     <bean id="userRepository" class="com.owary.repository.UserRepositoryImpl"/>
 
+    <bean name="config" class="com.owary.config.Config" />
+    <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

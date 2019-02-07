@@ -5,3 +5,4 @@
  - [SOAP Security - UsernameToken and PasswordText Authentication](./README-PasswordTextAuth.md)
  - [SOAP Security - PasswordText Authentication with Encrypted Password and Database](./README-PasswordTextAuthEncryptedPassword.md)
  - [SOAP Security - PasswordDigest Authentication with Plaintext Password](./README-PasswordDigest.md)
+ - [SOAP Security - Basic Authentication](./README-BasicAuthentication.md)
