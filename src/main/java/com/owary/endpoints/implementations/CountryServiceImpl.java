@@ -23,6 +23,8 @@ public class CountryServiceImpl implements CountryService {
 
     @Override
     public List<Country> retrieveAll() {
+        addCountry(new Country("AA", "CC", 12D, 32D));
+        addCountry(new Country("ADA", "CCD", 12D, 32D));
         return repository.getCountries();
     }
 
