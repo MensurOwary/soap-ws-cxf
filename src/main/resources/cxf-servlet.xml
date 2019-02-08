@@ -35,14 +35,17 @@
         <!--</jaxws:properties>-->
     </jaxws:endpoint>
 
+    <cxf:bus>
+        <cxf:inInterceptors>
+            <bean id="basicAuthInterceptor" class="com.owary.interceptor.BasicAuthenticationInterceptor"/>
+        </cxf:inInterceptors>
+    </cxf:bus>
+
 
     <!--Spring part-->
     <!--Autowire enabling-->
     <context:annotation-config/>
     <bean id="countryRepository" class="com.owary.repository.CountryRepositoryImpl"/>
     <bean id="userRepository" class="com.owary.repository.UserRepositoryImpl"/>
-
-    <bean name="config" class="com.owary.config.Config" />
-    <bean name="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 
 </beans>

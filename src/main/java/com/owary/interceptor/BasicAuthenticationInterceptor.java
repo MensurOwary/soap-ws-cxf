@@ -1,8 +1,19 @@
-# SOAP Security : Basic Authentication to secure Apache CXF SOAP Web Service
+package com.owary.interceptor;
 
-The only change we have made is to add an Interceptor to intercept the request to extract the username and password.
+import com.owary.model.User;
+import com.owary.repository.UserRepository;
+import com.owary.utils.DBHelper;
+import org.apache.cxf.interceptor.Fault;
+import org.apache.cxf.interceptor.security.AuthenticationException;
+import org.apache.cxf.message.Message;
+import org.apache.cxf.phase.AbstractPhaseInterceptor;
+import org.apache.cxf.phase.Phase;
+import org.springframework.beans.factory.annotation.Autowired;
 
-```java
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+
 public class BasicAuthenticationInterceptor extends AbstractPhaseInterceptor<Message> {
 
     @Autowired
@@ -59,18 +70,3 @@ public class BasicAuthenticationInterceptor extends AbstractPhaseInterceptor<Mes
         return authorization.get(0);
     }
 }
-```
-
-The Apache CXF Interceptors are classified by `Phase`s which indicates in which part of the flow the interceptor should be invoked. `PRE_INVOKE` means to invoke before the subsequent service method is called.
-
-Also we have to register the newly added interceptor in the `cxf-servlet.xml`
-
-```xml
-<cxf:bus>
-    <cxf:inInterceptors>
-        <bean id="basicAuthInterceptor" class="com.owary.interceptor.BasicAuthenticationInterceptor"/>
-    </cxf:inInterceptors>
-</cxf:bus>
-```
-
-That's all. So when a request is made it will be checked if it is authenticated.
